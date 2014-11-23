@@ -1,0 +1,25 @@
+{
+  "name": "broccoli-targz",
+  "version": "1.0.0",
+  "description": "a broccoli plugin for turning a tree into an archive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Trek Glowacki <trek.glowacki@gmail.com>",
+  "keywords": [
+    "broccoli-plugin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "quick-temp": "^0.1.2",
+    "rsvp": "^3.0.14",
+    "tar.gz": "^0.1.1"
+  },
+  "devDependencies": {
+    "broccoli": "^0.13.3",
+    "expect.js": "^0.3.1",
+    "mocha": "^2.0.1",
+    "mocha-jshint": "0.0.9"
+  }
+}
