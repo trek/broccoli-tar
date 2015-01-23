@@ -4,12 +4,12 @@ var path = require('path');
 var expect = require('expect.js');
 var walkSync = require('walk-sync');
 var broccoli = require('broccoli');
+var fs = require('fs');
 
-require('mocha-jshint')();
+// require('mocha-jshint')();
 
-var TarGzip = require('..');
+var Tar = require('..');
 
-// sorry I'm horrible.
 describe('broccoli-targz', function(){
   var fixturePath = path.join(__dirname, 'fixtures');
   var builder;
@@ -20,7 +20,30 @@ describe('broccoli-targz', function(){
     }
   });
 
-  it('emits an archive.gz file', function() {});
-  it('the tar contains the file from input the input tree', function(){});
-  it('emits an <name>.gz file if options.name is set')
+  it('emits an archive.gz file', function() {
+    var inputPath = path.join(fixturePath);
+    var tree = new Tar(inputPath);
+
+    builder = new broccoli.Builder(tree);
+    return builder.build()
+      .then(function(results) {
+        var outputPath = results.directory;
+        expect(fs.existsSync(outputPath + '/archive.tar.gz'));
+      });
+
+  });
+
+  it('the tar contains the file from input the input tree');
+
+  it('emits an <name>.gz file if options.name is set', function(){
+    var inputPath = path.join(fixturePath);
+    var tree = new Tar(inputPath);
+
+    builder = new broccoli.Builder(tree, 'name');
+    return builder.build()
+      .then(function(results) {
+        var outputPath = results.directory;
+        expect(fs.existsSync(outputPath + '/name.tar.gz'));
+      });
+  })
 });
