@@ -14,7 +14,6 @@
   "dependencies": {
     "quick-temp": "^0.1.2",
     "rsvp": "^3.0.14",
-    "tar.gz": "^0.1.1"
   },
   "devDependencies": {
     "broccoli": "^0.13.3",
