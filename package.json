@@ -12,13 +12,16 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "fstream": "^1.0.4",
     "quick-temp": "^0.1.2",
-    "rsvp": "^3.0.14"
+    "rsvp": "^3.0.14",
+    "tar": "^1.0.3"
   },
   "devDependencies": {
     "broccoli": "^0.13.3",
     "expect.js": "^0.3.1",
     "mocha": "^2.0.1",
-    "mocha-jshint": "0.0.9"
+    "mocha-jshint": "0.0.9",
+    "walk-sync": "^0.1.3"
   }
 }
