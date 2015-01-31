@@ -34,7 +34,7 @@ describe('broccoli-targz', function(){
       });
   });
 
-  it('the tar contains the files from input the tree', function(done){
+  it('the tar contains the files and structure of the input tree', function(done){
     var inputPath = path.join(fixturePath);
     var tree = new Tar(inputPath);
 
@@ -49,10 +49,12 @@ describe('broccoli-targz', function(){
         fs.createReadStream(file).pipe(zlib.createGunzip()).pipe(parser);
 
         parser.on('entry', function (e){
-          tarEntries.push(e.path.split('/').slice(1).join('/'));
+          tarEntries.push(e.path);
         });
 
         parser.on('end', function (){
+          expect(tarEntries.length).to.equal(srcEntries.length);
+
           srcEntries.forEach(function (src){
             expect(tarEntries.indexOf(src)).to.be.above(-1);
           });
