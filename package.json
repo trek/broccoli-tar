@@ -11,6 +11,10 @@
     "broccoli-plugin"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trek/broccoli-tar"
+  },
   "dependencies": {
     "quick-temp": "^0.1.2",
     "rsvp": "^3.0.14"
