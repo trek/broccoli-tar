@@ -45,5 +45,11 @@ describe('broccoli-targz', function(){
         var outputPath = results.directory;
         expect(fs.existsSync(outputPath + '/name.tar.gz'));
       });
-  })
+  });
+  
+  it('supports non-constructor pattern', function () {
+    var inputPath = path.join(fixturePath);
+    var tree = Tar(inputPath);
+    expect(tree).to.be.a(Tar);
+  });
 });
