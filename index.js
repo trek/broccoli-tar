@@ -3,6 +3,9 @@ var quickTemp = require('quick-temp');
 var exec = RSVP.denodeify(require('child_process').exec);
 
 TarGzip = function TarGzip(inputTree, name){
+  if (!(this instanceof TarGzip)) {
+    return new TarGzip(inputTree, name);
+  }
   this.inputTree = inputTree;
   this.name = name || 'archive';
 }
