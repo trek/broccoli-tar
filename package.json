@@ -1,19 +1,19 @@
 {
-  "name": "broccoli-targz",
+  "name": "broccoli-zip",
   "version": "1.0.0",
-  "description": "a broccoli plugin for turning a tree into an archive",
+  "description": "a broccoli plugin for turning a tree into a zip archive",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/"
   },
-  "author": "Trek Glowacki <trek.glowacki@gmail.com>",
+  "author": "Vasiliy Marchuk <vasman@hidev.it>",
   "keywords": [
     "broccoli-plugin"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/trek/broccoli-tar"
+    "url": "https://github.com/vasman/broccoli-zip"
   },
   "dependencies": {
     "quick-temp": "^0.1.2",
@@ -23,6 +23,7 @@
     "broccoli": "^0.13.3",
     "expect.js": "^0.3.1",
     "mocha": "^2.0.1",
-    "mocha-jshint": "0.0.9"
+    "mocha-jshint": "0.0.9",
+    "walk-sync": "^0.1.3"
   }
 }

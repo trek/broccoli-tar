@@ -1,9 +1,15 @@
-# broccoli-tar
+# broccoli-zip
 
-Broccoli tar takes a tree passed from another broccoli plugin
-and creates a gzipped tar archive containing those files.
+Broccoli zip takes a tree passed from another broccoli plugin
+and creates a zip archive containing those files.
 
-You can supply an optional archive name. The default is `'archive.tar.gz'`:
+### Dependencies
+
+- `zip` executable, for now
+
+### Usage
+
+You can supply an optional archive name. The default is `'archive.zip'`:
 
 ```javascript
 /*
@@ -14,22 +20,26 @@ You can supply an optional archive name. The default is `'archive.tar.gz'`:
 */
 
 var Funnel = require('broccoli-funnel');
-var Tar = require('broccoli-tar');
+var Zip = require('broccoli-zip');
 
 var cssFiles = new Funnel('src/css');
-var archive = new Tar(cssFiles, 'css');
-
+var archive = new Zip(cssFiles, 'css');
 
 /*
-  Results in a output of
-  ── css.tar.gz
+  Results in a output of:
+  /
+  ├── css.zip
 
-  When decompressed and untarred will result in the files
+  When unzipped, will result in the files:
 
-  css
+  /css
   ├── reset.css
   └── todos.css
 */
 
 module.exports = archive;
 ```
+
+### Credits
+
+Heavily based on the `broccoli-targz` plugin (https://github.com/trek/broccoli-tar) by Trek Glowacki (https://github.com/trek)

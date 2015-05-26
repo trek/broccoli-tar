@@ -1,4 +1,4 @@
-'use strict';
+/* global require, module */
 
 var path = require('path');
 var expect = require('expect.js');
@@ -8,9 +8,11 @@ var fs = require('fs');
 
 // require('mocha-jshint')();
 
-var Tar = require('..');
+var Zip = require('..');
 
-describe('broccoli-targz', function(){
+describe('broccoli-zip', function(){
+  'use strict';
+
   var fixturePath = path.join(__dirname, 'fixtures');
   var builder;
 
@@ -20,36 +22,36 @@ describe('broccoli-targz', function(){
     }
   });
 
-  it('emits an archive.gz file', function() {
+  it('emits an archive.zip file', function() {
     var inputPath = path.join(fixturePath);
-    var tree = new Tar(inputPath);
+    var tree = new Zip(inputPath);
 
     builder = new broccoli.Builder(tree);
     return builder.build()
       .then(function(results) {
         var outputPath = results.directory;
-        expect(fs.existsSync(outputPath + '/archive.tar.gz'));
+        expect(fs.existsSync(outputPath + '/archive.zip'));
       });
 
   });
 
-  it('the tar contains the file from input the input tree');
+  it('the zip contains the file from input the input tree');
 
-  it('emits an <name>.gz file if options.name is set', function(){
+  it('emits an <name>.zip file if options.name is set', function(){
     var inputPath = path.join(fixturePath);
-    var tree = new Tar(inputPath);
+    var tree = new Zip(inputPath);
 
     builder = new broccoli.Builder(tree, 'name');
     return builder.build()
       .then(function(results) {
         var outputPath = results.directory;
-        expect(fs.existsSync(outputPath + '/name.tar.gz'));
+        expect(fs.existsSync(outputPath + '/name.zip'));
       });
   });
-  
+
   it('supports non-constructor pattern', function () {
     var inputPath = path.join(fixturePath);
-    var tree = Tar(inputPath);
-    expect(tree).to.be.a(Tar);
+    var tree = Zip(inputPath);
+    expect(tree).to.be.a(Zip);
   });
 });

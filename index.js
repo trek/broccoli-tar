@@ -2,31 +2,31 @@ var RSVP = require('rsvp');
 var quickTemp = require('quick-temp');
 var exec = RSVP.denodeify(require('child_process').exec);
 
-TarGzip = function TarGzip(inputTree, name){
-  if (!(this instanceof TarGzip)) {
-    return new TarGzip(inputTree, name);
+function Zip(inputTree, archiveName){
+  if (!(this instanceof Zip)) {
+    return new Zip(inputTree, archiveName);
   }
   this.inputTree = inputTree;
-  this.name = name || 'archive';
+  this.archiveName = archiveName || 'archive';
 }
 
-TarGzip.prototype = {
-  read: function(readTree){
-    var destDir = quickTemp.makeOrRemake(this, 'tmpDestDir');
+Zip.prototype.read = function read(readTree){
+  var destDir = quickTemp.makeOrRemake(this, 'tmpDestDir');
 
-    var outName = this.name;
-    var tarName = [destDir, '/', outName, '.tar.gz'].join('');
+  var outName = this.archiveName;
+  var zipFilename = [destDir, '/', outName, '.zip'].join('');
 
-    return readTree(this.inputTree).then(function (srcDir){
-      var args = ['tar', 'chz', '-C', srcDir, '-f', tarName, '.'].join(' ');
-      return exec(args).then(function(){
-        return destDir;
-      });
+  return readTree(this.inputTree).then(function (srcDir){
+    // var args = ['tar', 'chz', '-C', srcDir, '-f', zipFilename, '.'].join(' ');
+    var args = ['zip', '-r', zipFilename, srcDir].join(' ');
+    return exec(args).then(function(){
+      return destDir;
     });
-  },
-  cleanup: function(){
-    quickTemp.remove(this, 'tmpDestDir');
-  }
+  });
 };
 
-module.exports = TarGzip;
+Zip.prototype.cleanup = function cleanup(){
+  quickTemp.remove(this, 'tmpDestDir');
+};
+
+module.exports = Zip;
